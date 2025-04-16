@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class MyName {
     static Gson gson = new Gson();
     public static void main(String[] args) {
         Map<String, String> myName = new HashMap<>();

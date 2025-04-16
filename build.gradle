@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'java'
@@ -12,6 +13,25 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.13.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+application {
+    mainClass = 'org.example.MyName'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'MyName'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it) }
+    }
+    archiveBaseName = 'myname'
+    archiveVersion = ''
 }
 
 test {
